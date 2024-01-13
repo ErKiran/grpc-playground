@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = ".;calculator";
+
+import "proto/google/annotations.proto";
+
+service Calculator{
+    rpc SquareRoot(SquareRootRequest) returns (SquareRootResponse){
+        option(google.api.http) = {
+            get: "/v1/squareroot/{number}"
+        };
+    }
+    rpc Sum(SumRequest) returns (SumResponse){}
+}
+
+message SquareRootRequest{
+    int32 number =1;
+}
+
+message SquareRootResponse{
+    int32 result =1;
+}
+
+message SumRequest {
+    int32 num1 = 1;
+    int32 num2 = 2;
+}
+
+message SumResponse{
+    int32 sum = 1;
+}
